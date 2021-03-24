@@ -2,20 +2,28 @@ package sample;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * TO ADD: DESCRIPTION
  * @author Christopher Yong, Maya Ravichandran
  */
-public class Menu {
+public class Menu implements Initializable {
     private static ObservableList<Order> orders;
-    public static ObservableList<ObservableList<MenuItem>> currentOrder;
+    public static Order currentOrder;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        currentOrder = new Order();
+    }
 
     public void handleCoffeeOrdering() {
         createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 450, 400);
@@ -48,4 +56,5 @@ public class Menu {
             alert.showAndWait();
         }
     }
+
 }

@@ -2,8 +2,8 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,9 +17,16 @@ public class Coffee extends MenuItem implements Customizable, Initializable {
     @FXML
     ComboBox<String> coffeeSize;
     @FXML
-    ComboBox<String> coffeeAddin;
+    CheckBox cream;
     @FXML
-    ListView<String> coffeeListView;
+    CheckBox syrup;
+    @FXML
+    CheckBox milk;
+    @FXML
+    CheckBox caramel;
+    @FXML
+    CheckBox whippedCream;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -27,13 +34,7 @@ public class Coffee extends MenuItem implements Customizable, Initializable {
                 "Tall",
                 "Grande",
                 "Venti");
-        coffeeAddin.getItems().addAll("Cream",
-                "Syrup",
-                "Milk",
-                "Caramel",
-                "Whipped-Cream");
         coffeeSize.getSelectionModel().select(0);
-        coffeeAddin.getSelectionModel().select(0);
     }
 
     @Override

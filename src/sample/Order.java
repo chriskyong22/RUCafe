@@ -9,10 +9,13 @@ import java.util.ArrayList;
 public class Order implements Customizable {
     private static int generatingOrderNumbers = 0;
     private int orderNumber;
+    private double orderSubTotalCost;
+    private double orderTotalCost;
     private ArrayList<MenuItem> items;
 
     public Order() {
         this.orderNumber = generatingOrderNumbers++;
+        this.orderNumber = 0;
     }
 
     public Order(int orderNumber) {

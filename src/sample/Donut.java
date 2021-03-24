@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -52,7 +51,7 @@ public class Donut extends MenuItem implements Customizable, Initializable {
         String donutFlavor = donutFlavors.getSelectionModel().getSelectedItem();
         int quantity = 0;
         try {
-            quantity = Integer.valueOf(donutAmount.getText());
+            quantity = Integer.parseInt(donutAmount.getText());
             if (quantity >= 0) {
                 add(donutType + "::" + donutFlavor + "::" + quantity);
                 return;
@@ -89,6 +88,10 @@ public class Donut extends MenuItem implements Customizable, Initializable {
         }
 
         return false;
+    }
+
+    public void addToShoppingCart() {
+
     }
 
 }
