@@ -44,11 +44,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <CheckBox mnemonicParsing="false" text="Cream" />
-                        <CheckBox mnemonicParsing="false" text="Syrup" GridPane.columnIndex="1" />
-                        <CheckBox mnemonicParsing="false" text="Milk" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="114.0" text="Whipped Cream" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="cream" mnemonicParsing="false" text="Cream" />
+                        <CheckBox fx:id="syrup" mnemonicParsing="false" text="Syrup" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="milk" mnemonicParsing="false" text="Milk" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="caramel" mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="whippedCream" mnemonicParsing="false" prefHeight="17.0" prefWidth="114.0" text="Whipped Cream" GridPane.rowIndex="2" />
                      </children>
                      <VBox.margin>
                         <Insets top="5.0" />
