@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * TO ADD: DESCRIPTION
  * @author Christopher Yong, Maya Ravichandran
  */
-public class Menu implements Initializable {
+public class MenuController implements Initializable {
     private static ObservableList<Order> orders;
     public static Order currentOrder;
 
