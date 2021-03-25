@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -26,6 +28,8 @@ public class DonutController implements Initializable {
     @FXML
     TextField donutAmount;
 
+    private ArrayList<Donut> storedDonuts;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         donutTypes.getItems().addAll("Yeast Donut",
@@ -38,13 +42,6 @@ public class DonutController implements Initializable {
         donutFlavors.getSelectionModel().select(0);
     }
 
-    public boolean add(Object obj) {
-        //TO DO
-        if (!(obj instanceof String)) return false;
-        donutListView.getItems().add((String) obj);
-        return true;
-    }
-
     public void handleAdd() {
         String donutType = donutTypes.getSelectionModel().getSelectedItem();
         String donutFlavor = donutFlavors.getSelectionModel().getSelectedItem();
@@ -52,7 +49,10 @@ public class DonutController implements Initializable {
         try {
             quantity = Integer.parseInt(donutAmount.getText());
             if (quantity > 0) {
-                add(donutType + "::" + donutFlavor + "::" + quantity);
+                Donut donut = new Donut(donutType, donutFlavor, quantity);
+                donutListView.getItems().add(donut.toString());
+                storedDonuts.add(donut);
+                updateSubTotal();
                 return;
             }
         } catch (NumberFormatException | NullPointerException e) {
@@ -66,12 +66,6 @@ public class DonutController implements Initializable {
     }
 
     public void handleRemove() {
-        // TO ASK if we need to use remove(Obj obj) or if we can just remove
-        // from the ListView
-        remove(null);
-    }
-
-    public boolean remove(Object obj) {
         //TO DO
         int selectedIndex = donutListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0) {
@@ -82,14 +76,24 @@ public class DonutController implements Initializable {
             alert.showAndWait();
         } else {
             donutListView.getItems().remove(selectedIndex);
+            storedDonuts.remove(selectedIndex);
             donutListView.getSelectionModel().select(-1);
+            updateSubTotal();
         }
+    }
 
-        return false;
+    public void updateSubTotal() {
+        double price = 0;
+        for (Donut donut : storedDonuts) {
+            donut.itemPrice();
+            price += donut.getItemPrice();
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
+        donutAmount.setText(decimalFormat.format(price));
     }
 
     public void addToShoppingCart() {
-
+        storedDonuts.forEach((item) -> MenuController.currentOrder.add(item));
     }
 
 }

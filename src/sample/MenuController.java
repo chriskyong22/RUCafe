@@ -38,7 +38,7 @@ public class MenuController implements Initializable {
     }
 
     public void handleCheckOrders() {
-        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders", 800, 600);
+        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders", 348, 383);
     }
 
     private void createNewStage(String path, String title, int width, int height) {

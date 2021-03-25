@@ -1,10 +1,14 @@
 package sample;
+
+import java.text.DecimalFormat;
+
 /**
  * TO ADD: DESCRIPTION
  * @author Christopher Yong, Maya Ravichandran
  */
 public class MenuItem {
-    double itemPrice;
+    protected double itemPrice;
+    private DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
 
     public MenuItem() {
         this.itemPrice = 0;
@@ -16,8 +20,7 @@ public class MenuItem {
         return this.itemPrice;
     }
 
-    public void setItemPrice(double newPrice) {
-        this.itemPrice = newPrice;
+    public String itemPriceString() {
+        return decimalFormat.format(itemPrice);
     }
-
 }

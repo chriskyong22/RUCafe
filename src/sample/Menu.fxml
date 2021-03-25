@@ -42,7 +42,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@rutgers.png" />
+                  <Image url="@images/rutgers.png" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
@@ -55,12 +55,12 @@
             </Region>
             <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#handleCheckCurrentOrder" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@checkout.png" />
+                  <Image url="@images/checkout.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#handleCheckOrders" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@orderIcon.png" />
+                  <Image url="@images/orderIcon.png" />
                </image>
             </ImageView>
          </children>
@@ -76,7 +76,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="354.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@donuts.jpg" />
+                        <Image url="@images/donuts.jpg" />
                      </image>
                   </ImageView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Order Donuts" textAlignment="CENTER">
@@ -98,7 +98,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="354.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@coffee2.jpg" />
+                        <Image url="@images/coffee2.jpg" />
                      </image>
                      <VBox.margin>
                         <Insets />
