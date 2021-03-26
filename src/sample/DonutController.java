@@ -27,11 +27,14 @@ public class DonutController implements Initializable {
     ListView<String> donutListView;
     @FXML
     TextField donutAmount;
+    @FXML
+    TextField donutSubtotalPrice;
 
-    private ArrayList<Donut> storedDonuts;
+    private ArrayList<Donut> storedDonuts = new ArrayList<Donut>();;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         donutTypes.getItems().addAll("Yeast Donut",
                 "Cake Donut",
                 "Donut Holes");
@@ -59,9 +62,9 @@ public class DonutController implements Initializable {
 
         }
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("RUCAFE: Warning");
+        alert.setTitle("RUCAFE: WARNING");
         alert.setHeaderText("Invalid Quantity");
-        alert.setContentText("Please enter a non-negative and non-empty/zero quantity.");
+        alert.setContentText("Please enter a non-negative and non-empty/zero quantity that is below or equal to " + Integer.MAX_VALUE + ".");
         alert.showAndWait();
     }
 
@@ -72,7 +75,7 @@ public class DonutController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("RUCAFE: WARNING");
             alert.setHeaderText("INVALID SELECTION");
-            alert.setContentText("Please select a valid item!");
+            alert.setContentText("Please select a valid item from the list!");
             alert.showAndWait();
         } else {
             donutListView.getItems().remove(selectedIndex);
@@ -89,11 +92,15 @@ public class DonutController implements Initializable {
             price += donut.getItemPrice();
         }
         DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
-        donutAmount.setText(decimalFormat.format(price));
+        donutSubtotalPrice.setText(decimalFormat.format(price));
     }
 
     public void addToShoppingCart() {
-        storedDonuts.forEach((item) -> MenuController.currentOrder.add(item));
+        storedDonuts.forEach((item) -> CurrentOrderController.currentOrder.add(item));
+        storedDonuts.clear();
+        donutListView.getItems().clear();
+        donutListView.getSelectionModel().select(-1);
+        updateSubTotal();
     }
 
 }

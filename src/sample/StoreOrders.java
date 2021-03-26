@@ -6,7 +6,7 @@ public class StoreOrders implements Customizable {
     private ArrayList<Order> orders;
 
     public StoreOrders() {
-
+        this.orders = new ArrayList<Order>();
     }
 
     @Override
@@ -19,6 +19,7 @@ public class StoreOrders implements Customizable {
 
     @Override
     public boolean remove(Object obj) {
+        if(obj == this) return true;
         if (!(obj instanceof Order)) {
             return false;
         }

@@ -17,16 +17,14 @@ import java.util.ResourceBundle;
  * @author Christopher Yong, Maya Ravichandran
  */
 public class MenuController implements Initializable {
-    private static ObservableList<Order> orders;
-    public static Order currentOrder;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        currentOrder = new Order();
+        CurrentOrderController.currentOrder = new Order();
     }
 
     public void handleCoffeeOrdering() {
-        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 450, 400);
+        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 400, 350);
     }
 
     public void handleDonutOrdering() {
@@ -34,11 +32,11 @@ public class MenuController implements Initializable {
     }
 
     public void handleCheckCurrentOrder() {
-        createNewStage("CurrentOrder.fxml", "RUCAFE: Current Order", 800, 600);
+        createNewStage("CurrentOrder.fxml", "RUCAFE: Current Order", 425, 400);
     }
 
     public void handleCheckOrders() {
-        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders", 348, 383);
+        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders", 375, 350);
     }
 
     private void createNewStage(String path, String title, int width, int height) {

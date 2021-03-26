@@ -7,12 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="350.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -30,20 +31,25 @@
    <center>
       <HBox alignment="CENTER" prefHeight="333.0" prefWidth="348.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" spacing="5.0">
+            <VBox alignment="CENTER" prefHeight="290.0" prefWidth="272.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ComboBox />
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
-                  <TextField promptText="Total Price" />
+                  <ComboBox maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+                  <ListView prefHeight="200.0" prefWidth="301.0" VBox.vgrow="ALWAYS" />
+                  <TextField maxWidth="175.0" promptText="Total Price" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </VBox>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                <children>
                   <Button mnemonicParsing="false" text="Delete Order" />
+                  <Region maxHeight="1.7976931348623157E308" />
+                  <Button mnemonicParsing="false" text="Export Order" />
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
          </children>
          <padding>

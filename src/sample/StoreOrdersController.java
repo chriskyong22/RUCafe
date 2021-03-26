@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 /**
@@ -7,5 +9,6 @@ import java.util.ArrayList;
  * @author Christopher Yong, Maya Ravichandran
  */
 public class StoreOrdersController {
+    public static StoreOrders orders = new StoreOrders();
 
 }

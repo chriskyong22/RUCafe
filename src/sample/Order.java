@@ -9,13 +9,16 @@ import java.util.ArrayList;
 public class Order implements Customizable {
     private static int generatingOrderNumbers = 0;
     private int orderNumber;
-    private double orderSubTotalCost;
-    private double orderTotalCost;
+    private double subTotalCost;
+    private double totalCost;
+    public static final double SALES_TAX = 0.06625;
     private ArrayList<MenuItem> items;
 
     public Order() {
+        this.items = new ArrayList<MenuItem>();
         this.orderNumber = generatingOrderNumbers++;
-        this.orderNumber = 0;
+        this.subTotalCost = 0;
+        this.totalCost = 0;
     }
 
     public Order(int orderNumber) {
@@ -32,6 +35,30 @@ public class Order implements Customizable {
         return true;
     }
 
+    public void calculateSubTotalCost() {
+        this.subTotalCost = 0;
+        for(MenuItem item : items) {
+            item.itemPrice();
+            subTotalCost += item.getItemPrice();
+        }
+    }
+
+    public double getSubTotalCost() {
+        return this.subTotalCost;
+    }
+
+    public void calculateTotalCost() {
+        this.totalCost = this.subTotalCost + getSaleTax();
+    }
+
+    public double getSaleTax() {
+        return this.subTotalCost * SALES_TAX;
+    }
+
+    public double getTotalCost() {
+        return this.totalCost;
+    }
+
     @Override
     public boolean remove(Object obj) {
         //TO DO
@@ -43,10 +70,20 @@ public class Order implements Customizable {
 
     @Override
     public boolean equals(Object obj) {
+        if(obj == this) return true;
         if (!(obj instanceof Order)) {
             return false;
         }
         Order temp = (Order) obj;
         return this.orderNumber == temp.orderNumber;
+    }
+
+    @Override
+    public String toString() {
+        String toReturn = "";
+        for (MenuItem item : items) {
+            toReturn += (item.toString() + "\n");
+        }
+        return toReturn;
     }
 }

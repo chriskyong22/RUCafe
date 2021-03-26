@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -27,7 +26,7 @@
       </HBox>
    </top>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="390.0" prefWidth="160.0" spacing="10.0">
                <children>
@@ -43,15 +42,17 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <Region HBox.hgrow="ALWAYS" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
-            <Region HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" spacing="5.0">
+            <HBox HBox.hgrow="ALWAYS">
                <children>
-                  <ListView fx:id="donutListView" prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#handleRemove" text="Remove Item" />
+                  <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ListView fx:id="donutListView" VBox.vgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleRemove" text="Remove Item" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -64,10 +65,10 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Sub-Total " />
-                  <TextField editable="false" promptText="Price" />
+                  <TextField fx:id="donutSubtotalPrice" editable="false" promptText="Price" />
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Add to Shopping Cart" />
+            <Button mnemonicParsing="false" onAction="#addToShoppingCart" text="Add to Shopping Cart" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
