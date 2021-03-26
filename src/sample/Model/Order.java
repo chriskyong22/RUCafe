@@ -1,4 +1,4 @@
-package sample;
+package sample.Model;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,6 +39,14 @@ public class Order implements Customizable {
             return false;
         }
         return items.remove((MenuItem) obj);
+    }
+
+    public int getNumberOfMenuItems() {
+        return items.size();
+    }
+
+    public MenuItem getItem(int index) {
+        return items.get(index);
     }
 
     public int getOrderNumber() {

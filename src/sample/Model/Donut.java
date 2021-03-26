@@ -1,6 +1,4 @@
-package sample;
-
-import java.util.Objects;
+package sample.Model;
 
 /**
  * TO ADD: DESCRIPTION

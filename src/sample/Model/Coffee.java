@@ -1,7 +1,6 @@
-package sample;
+package sample.Model;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.StringJoiner;
 
 /**

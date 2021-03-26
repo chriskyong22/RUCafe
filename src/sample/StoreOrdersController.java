@@ -1,13 +1,13 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import sample.Model.Order;
+import sample.Model.StoreOrders;
 
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -103,11 +103,11 @@ public class StoreOrdersController implements Initializable {
         }
     }
 
-    public void generateEmptyWarning() {
+    private void generateEmptyWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("RUCAFE: WARNING");
         alert.setHeaderText("No Stored Orders!");
-        alert.setContentText("There are no current orders placed! Please" +
+        alert.setContentText("There are no orders placed! Please" +
                 " navigate back to the menu and place some orders!");
         alert.showAndWait();
     }
