@@ -1,6 +1,6 @@
 package sample.Model;
 
-import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +16,7 @@ public class Order implements Customizable {
     private ArrayList<MenuItem> items;
 
     public Order() {
-        this.items = new ArrayList<MenuItem>();
+        this.items = new ArrayList<>();
         this.orderNumber = generatingOrderNumbers++;
         this.subTotalCost = 0;
         this.totalCost = 0;
@@ -77,7 +77,7 @@ public class Order implements Customizable {
         return this.totalCost;
     }
 
-    public ArrayList<String> stringified() {
+    public ArrayList<String> stringifiedMenuItems() {
         ArrayList<String> toReturn = new ArrayList<String>();
         for (MenuItem item : items) {
             toReturn.add(item.toString());
@@ -85,8 +85,18 @@ public class Order implements Customizable {
         return toReturn;
     }
 
-    public void exportOrder(File file) throws Exception {
-
+    @Override
+    public String toString() {
+        String orderString = "[ORDER NUMBER " + orderNumber + "]\n";
+        for (MenuItem item : items) {
+            orderString += (item.toString()) + "\n";
+        }
+        this.calculateSubTotalCost();
+        this.calculateTotalCost();
+        DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
+        orderString += "[TOTAL PRICE: " + decimalFormat.format(
+                this.getTotalCost()) + "]\n";
+        return orderString;
     }
 
     @Override

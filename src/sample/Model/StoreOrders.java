@@ -1,5 +1,9 @@
 package sample.Model;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoreOrders implements Customizable {
@@ -27,6 +31,25 @@ public class StoreOrders implements Customizable {
             }
         }
         return null;
+    }
+
+    public void exportDatabase(File file) throws Exception{
+        BufferedWriter exportFile = null;
+        try {
+            exportFile = new BufferedWriter(
+                    new FileWriter(file.getAbsolutePath()));
+            for (Order order : orders) {
+                exportFile.write(order.toString());
+            }
+        } finally {
+            try {
+                if (exportFile != null) {
+                    exportFile.close();
+                }
+            } catch (IOException e) {
+                throw e;
+            }
+        }
     }
 
     @Override

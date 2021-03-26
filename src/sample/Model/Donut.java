@@ -20,7 +20,6 @@ public class Donut extends MenuItem {
         this.quantity = quantity;
     }
 
-
     @Override
     public void itemPrice() {
         switch(type) {

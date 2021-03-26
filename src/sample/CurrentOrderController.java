@@ -44,11 +44,14 @@ public class CurrentOrderController implements Initializable {
     public boolean checkEmptyOrder() {
         if (currentOrder.getNumberOfMenuItems() == 0) {
             generateEmptyWarning();
-            placeOrder.setDisable(true);
-            removeItem.setDisable(true);
+            disableButtons();
             return true;
         }
         return false;
+    }
+    private void disableButtons() {
+        placeOrder.setDisable(true);
+        removeItem.setDisable(true);
     }
 
     private void generateEmptyWarning() {
@@ -62,7 +65,7 @@ public class CurrentOrderController implements Initializable {
     }
 
     public void updateItems() {
-        currentOrderListView.getItems().addAll(currentOrder.stringified());
+        currentOrderListView.getItems().addAll(currentOrder.stringifiedMenuItems());
     }
 
     public void updateCosts() {
@@ -108,6 +111,7 @@ public class CurrentOrderController implements Initializable {
                 "To view your previous orders, please click on the" +
                 " clipboard icon in the main menu");
         alert.showAndWait();
+        disableButtons();
     }
 
 }

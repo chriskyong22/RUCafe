@@ -20,7 +20,7 @@ public class Coffee extends MenuItem implements Customizable {
     public static final double VENTI_PRICE = 1.50;
 
     public Coffee(String size, int quantity) {
-        this.addins = new ArrayList<String>();
+        this.addins = new ArrayList<>();
         this.size = size;
         this.quantity = quantity;
     }
@@ -38,23 +38,21 @@ public class Coffee extends MenuItem implements Customizable {
         if (!(obj instanceof String)) {
             return false;
         }
-        return addins.remove((String) obj);
+        return addins.remove(obj);
     }
 
     @Override
     public void itemPrice() {
+        super.itemPrice = BASE_PRICE;
         switch(size) {
-            case "Short":
-                super.itemPrice = BASE_PRICE;
-                break;
             case "Tall":
-                super.itemPrice = BASE_PRICE + TALL_PRICE;
+                super.itemPrice += TALL_PRICE;
                 break;
             case "Grande":
-                super.itemPrice = BASE_PRICE + GRANDE_PRICE;
+                super.itemPrice += GRANDE_PRICE;
                 break;
             case "Venti":
-                super.itemPrice = BASE_PRICE + VENTI_PRICE;
+                super.itemPrice += VENTI_PRICE;
                 break;
         }
         super.itemPrice += (addins.size() * ADDIN_PRICE);

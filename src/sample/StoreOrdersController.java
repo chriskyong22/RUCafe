@@ -3,9 +3,12 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import sample.Model.Order;
 import sample.Model.StoreOrders;
 
+import java.io.File;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -56,7 +59,7 @@ public class StoreOrdersController implements Initializable {
     }
 
     private void updateOrderDetails(Order order) {
-        orderListView.getItems().addAll(order.stringified());
+        orderListView.getItems().addAll(order.stringifiedMenuItems());
         order.calculateSubTotalCost();
         order.calculateTotalCost();
         DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
@@ -100,6 +103,43 @@ public class StoreOrdersController implements Initializable {
     public void handleExportOrder() {
         if (checkEmptyStoredOrders()) {
             return;
+        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("RUCAFE: ERROR");
+        alert.setHeaderText("Export Failed!");
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter filter =
+                new FileChooser.ExtensionFilter("text files (*.txt)",
+                        "*.txt");
+        fc.getExtensionFilters().add(filter);
+        File selectedFile = fc.showSaveDialog((Stage)orderNumber.getScene().getWindow());
+        if (selectedFile == null || !selectedFile.canWrite()) {
+            alert.setContentText("The selected File did not exist/or could" +
+                    " not write to for exporting!");
+            alert.showAndWait();
+            return;
+        }
+        final int NOT_FOUND = -1;
+        if (selectedFile.getName().lastIndexOf('.') == NOT_FOUND ||
+                !selectedFile.getName().substring(selectedFile.getName().
+                        lastIndexOf('.') + 1).equals("txt")) {
+            alert.setContentText("File is not a textfile! Can only export " +
+                    "to textfiles!\n");
+            alert.showAndWait();
+            return;
+        }
+        try {
+            orders.exportDatabase(selectedFile);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setTitle("RUCAFE: Export");
+            alert.setHeaderText("Successful Export");
+            alert.setContentText("All stored orders have been successfully" +
+                    " exported to " + selectedFile.getName() + "!");
+            alert.showAndWait();
+        } catch (Exception e) {
+            alert.setContentText("Error occurred when writing to " +
+                    selectedFile.getName() + "!");
+            alert.showAndWait();
         }
     }
 

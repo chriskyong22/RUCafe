@@ -63,8 +63,10 @@ public class DonutController implements Initializable {
         }
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("RUCAFE: WARNING");
-        alert.setHeaderText("Invalid Quantity");
-        alert.setContentText("Please enter a non-negative and non-empty/zero quantity that is below or equal to " + Integer.MAX_VALUE + ".");
+        alert.setHeaderText("INVALID QUANTITY");
+        alert.setContentText("Please enter a non-negative and" +
+                " non-empty/zero quantity that is below or " +
+                "equal to " + Integer.MAX_VALUE + ".");
         alert.showAndWait();
     }
 
@@ -98,8 +100,8 @@ public class DonutController implements Initializable {
     public void addToShoppingCart() {
         if (storedDonuts.size() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("RUCAFE: Empty Carts");
-            alert.setHeaderText("Empty List");
+            alert.setTitle("RUCAFE: Empty List");
+            alert.setHeaderText("EMPTY LIST");
             alert.setContentText("Please add some items before adding to " +
                     "the shopping cart");
             alert.showAndWait();
@@ -113,7 +115,7 @@ public class DonutController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("RUCAFE: Confirmation");
         alert.setHeaderText("Added to Shopping Cart!");
-        alert.setContentText("Successfully add to your shopping cart! " +
+        alert.setContentText("Successfully added to your shopping cart! " +
                 "Please check your current orders or the shopping cart " +
                 "icon to checkout your items!");
         alert.showAndWait();
