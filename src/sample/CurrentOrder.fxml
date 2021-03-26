@@ -19,7 +19,10 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="removeItem" mnemonicParsing="false" onAction="#handleRemoveItem" text="Remove Selected Item" />
+                  <Button fx:id="removeItem" mnemonicParsing="false" onAction="#handleRemoveItem" text="Remove Selected Item">
+                     <font>
+                        <Font name="KacstOffice" size="12.0" />
+                     </font></Button>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -43,7 +46,10 @@
                         <TextField fx:id="totalPrice" editable="false" promptText="Total Price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sub-total" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sub-total">
+                                 <font>
+                                    <Font name="Georgia" size="12.0" />
+                                 </font></Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -54,7 +60,10 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="82.0" GridPane.rowIndex="1">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Tax" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Tax">
+                                 <font>
+                                    <Font name="Georgia" size="12.0" />
+                                 </font></Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -65,7 +74,10 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price">
+                                 <font>
+                                    <Font name="Georgia" size="12.0" />
+                                 </font></Text>
                            </children>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -86,7 +98,10 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="placeOrder" mnemonicParsing="false" onAction="#addToStoredOrders" text="Place Order" textAlignment="CENTER" />
+                  <Button fx:id="placeOrder" mnemonicParsing="false" onAction="#addToStoredOrders" text="Place Order" textAlignment="CENTER">
+                     <font>
+                        <Font name="KacstBook" size="12.0" />
+                     </font></Button>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -98,9 +113,9 @@
    <top>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR ORDER">
+            <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR ORDER">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Frank Ruehl CLM Bold" size="30.0" />
                </font>
             </Text>
          </children>

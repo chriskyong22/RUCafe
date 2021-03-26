@@ -24,7 +24,7 @@ public class MenuController implements Initializable {
     }
 
     public void handleCoffeeOrdering() {
-        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 400, 350);
+        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 375, 400);
     }
 
     public void handleDonutOrdering() {

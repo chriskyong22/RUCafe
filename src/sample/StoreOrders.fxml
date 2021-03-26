@@ -17,14 +17,14 @@
    <top>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stored Orders">
+            <Text fill="#f80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Stored Orders">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Frank Ruehl CLM Bold" size="30.0" />
                </font>
             </Text>
          </children>
          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets left="5.0" right="5.0" top="10.0" />
          </padding>
       </HBox>
    </top>
@@ -35,7 +35,16 @@
                <children>
                   <ComboBox fx:id="orderNumber" maxWidth="1.7976931348623157E308" onHidden="#handleSelectedOrder" VBox.vgrow="ALWAYS" />
                   <ListView fx:id="orderListView" prefHeight="200.0" prefWidth="301.0" VBox.vgrow="ALWAYS" />
-                  <TextField fx:id="orderTotalPrice" editable="false" maxWidth="175.0" promptText="Total Price" />
+                  <HBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price">
+                           <font>
+                              <Font name="Georgia" size="12.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="orderTotalPrice" editable="false" promptText="Total Price" />
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -43,9 +52,17 @@
             </VBox>
             <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                <children>
-                  <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#handleDeleteOrder" text="Delete Order" />
+                  <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#handleDeleteOrder" text="Delete Order">
+                     <font>
+                        <Font name="KacstBook" size="12.0" />
+                     </font>
+                  </Button>
                   <Region maxHeight="1.7976931348623157E308" />
-                  <Button fx:id="exportOrder" mnemonicParsing="false" onAction="#handleExportOrder" text="Export Order" />
+                  <Button fx:id="exportOrder" mnemonicParsing="false" onAction="#handleExportOrder" text="Export Order">
+                     <font>
+                        <Font name="KacstBook" size="12.0" />
+                     </font>
+                  </Button>
                </children>
                <HBox.margin>
                   <Insets />
