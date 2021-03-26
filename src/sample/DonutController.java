@@ -96,11 +96,27 @@ public class DonutController implements Initializable {
     }
 
     public void addToShoppingCart() {
+        if (storedDonuts.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("RUCAFE: Empty Carts");
+            alert.setHeaderText("Empty List");
+            alert.setContentText("Please add some items before adding to " +
+                    "the shopping cart");
+            alert.showAndWait();
+            return;
+        }
         storedDonuts.forEach((item) -> CurrentOrderController.currentOrder.add(item));
         storedDonuts.clear();
         donutListView.getItems().clear();
         donutListView.getSelectionModel().select(-1);
         updateSubTotal();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("RUCAFE: Confirmation");
+        alert.setHeaderText("Added to Shopping Cart!");
+        alert.setContentText("Successfully add to your shopping cart! " +
+                "Please check your current orders or the shopping cart " +
+                "icon to checkout your items!");
+        alert.showAndWait();
     }
 
 }

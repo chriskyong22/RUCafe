@@ -37,7 +37,7 @@ public class CurrentOrderController implements Initializable {
     }
 
     public void updateItems() {
-        currentOrderListView.getItems().add(currentOrder.toString());
+        currentOrderListView.getItems().addAll(currentOrder.stringified());
     }
 
     public void updateCosts() {

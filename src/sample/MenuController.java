@@ -1,11 +1,11 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        CurrentOrderController.currentOrder = new Order();
+
     }
 
     public void handleCoffeeOrdering() {
@@ -45,6 +45,7 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle(title);
             stage.setScene(new Scene(root, width, height));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException | NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

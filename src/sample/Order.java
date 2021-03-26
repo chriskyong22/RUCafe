@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * @author Christopher Yong, Maya Ravichandran
  */
 public class Order implements Customizable {
-    private static int generatingOrderNumbers = 0;
+    private static int generatingOrderNumbers = 1;
     private int orderNumber;
     private double subTotalCost;
     private double totalCost;
@@ -21,10 +22,6 @@ public class Order implements Customizable {
         this.totalCost = 0;
     }
 
-    public Order(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     @Override
     public boolean add(Object obj) {
         //TO DO
@@ -33,6 +30,19 @@ public class Order implements Customizable {
         }
         items.add((MenuItem) obj);
         return true;
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        //TO DO
+        if (!(obj instanceof MenuItem)) {
+            return false;
+        }
+        return items.remove((MenuItem) obj);
+    }
+
+    public int getOrderNumber() {
+        return this.orderNumber;
     }
 
     public void calculateSubTotalCost() {
@@ -59,13 +69,16 @@ public class Order implements Customizable {
         return this.totalCost;
     }
 
-    @Override
-    public boolean remove(Object obj) {
-        //TO DO
-        if (!(obj instanceof MenuItem)) {
-            return false;
+    public ArrayList<String> stringified() {
+        ArrayList<String> toReturn = new ArrayList<String>();
+        for (MenuItem item : items) {
+            toReturn.add(item.toString());
         }
-        return items.remove((MenuItem) obj);
+        return toReturn;
+    }
+
+    public void exportOrder(File file) throws Exception {
+
     }
 
     @Override
@@ -78,12 +91,5 @@ public class Order implements Customizable {
         return this.orderNumber == temp.orderNumber;
     }
 
-    @Override
-    public String toString() {
-        String toReturn = "";
-        for (MenuItem item : items) {
-            toReturn += (item.toString() + "\n");
-        }
-        return toReturn;
-    }
+
 }

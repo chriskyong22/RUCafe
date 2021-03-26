@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane prefHeight="350.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="350.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StoreOrdersController">
    <top>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -33,9 +33,9 @@
          <children>
             <VBox alignment="CENTER" prefHeight="290.0" prefWidth="272.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ComboBox maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                  <ListView prefHeight="200.0" prefWidth="301.0" VBox.vgrow="ALWAYS" />
-                  <TextField maxWidth="175.0" promptText="Total Price" />
+                  <ComboBox fx:id="orderNumber" maxWidth="1.7976931348623157E308" onHidden="#handleSelectedOrder" VBox.vgrow="ALWAYS" />
+                  <ListView fx:id="orderListView" prefHeight="200.0" prefWidth="301.0" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="orderTotalPrice" editable="false" maxWidth="175.0" promptText="Total Price" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -43,9 +43,9 @@
             </VBox>
             <VBox alignment="CENTER" spacing="5.0" HBox.hgrow="SOMETIMES">
                <children>
-                  <Button mnemonicParsing="false" text="Delete Order" />
+                  <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#handleDeleteOrder" text="Delete Order" />
                   <Region maxHeight="1.7976931348623157E308" />
-                  <Button mnemonicParsing="false" text="Export Order" />
+                  <Button fx:id="exportOrder" mnemonicParsing="false" onAction="#handleExportOrder" text="Export Order" />
                </children>
                <HBox.margin>
                   <Insets />

@@ -59,6 +59,15 @@ public class Coffee extends MenuItem implements Customizable {
                 break;
         }
         super.itemPrice += (addins.size() * ADDIN_PRICE);
+        super.itemPrice *= quantity;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

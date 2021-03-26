@@ -42,7 +42,7 @@ public class Donut extends MenuItem {
 
     @Override
     public String toString() {
-        return flavor + "(" + quantity + ")";
+        return type + " " + flavor + "(" + quantity + ")";
     }
 
     @Override
