@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * TO ADD: DESCRIPTION
  * @author Christopher Yong, Maya Ravichandran
  */
+
 public class Order implements Customizable {
     private static int generatingOrderNumbers = 1;
     private int orderNumber;
@@ -38,7 +39,7 @@ public class Order implements Customizable {
         if (!(obj instanceof MenuItem)) {
             return false;
         }
-        return items.remove((MenuItem) obj);
+        return items.remove(obj);
     }
 
     public int getNumberOfMenuItems() {
@@ -78,7 +79,7 @@ public class Order implements Customizable {
     }
 
     public ArrayList<String> stringifiedMenuItems() {
-        ArrayList<String> toReturn = new ArrayList<String>();
+        ArrayList<String> toReturn = new ArrayList<>();
         for (MenuItem item : items) {
             toReturn.add(item.toString());
         }

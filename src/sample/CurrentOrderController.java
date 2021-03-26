@@ -36,9 +36,7 @@ public class CurrentOrderController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItems();
         updateCosts();
-        if(checkEmptyOrder()) {
-            return;
-        }
+        checkEmptyOrder();
     }
 
     public boolean checkEmptyOrder() {
@@ -90,9 +88,7 @@ public class CurrentOrderController implements Initializable {
             currentOrder.remove(currentOrder.getItem(selectedIndex));
             currentOrderListView.getSelectionModel().select(-1);
             updateCosts();
-            if (checkEmptyOrder()) {
-                return;
-            }
+            checkEmptyOrder();
         }
     }
 

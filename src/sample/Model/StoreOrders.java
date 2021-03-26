@@ -3,21 +3,25 @@ package sample.Model;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+
+/**
+ * TO ADD: DESCRIPTION
+ * @author Christopher Yong, Maya Ravichandran
+ */
 
 public class StoreOrders implements Customizable {
     private ArrayList<Order> orders;
 
     public StoreOrders() {
-        this.orders = new ArrayList<Order>();
+        this.orders = new ArrayList<>();
     }
 
     public ArrayList<String> getOrderNumbers() {
         if (orders.size() == 0) {
             return null;
         }
-        ArrayList<String> orderNumbers = new ArrayList<String>();
+        ArrayList<String> orderNumbers = new ArrayList<>();
         for(Order order : orders) {
             orderNumbers.add(order.getOrderNumber() + "");
         }
@@ -33,21 +37,11 @@ public class StoreOrders implements Customizable {
         return null;
     }
 
-    public void exportDatabase(File file) throws Exception{
-        BufferedWriter exportFile = null;
-        try {
-            exportFile = new BufferedWriter(
-                    new FileWriter(file.getAbsolutePath()));
+    public void exportDatabase(File file) throws Exception {
+        try (BufferedWriter exportFile = new BufferedWriter(
+                new FileWriter(file.getAbsolutePath()))) {
             for (Order order : orders) {
                 exportFile.write(order.toString());
-            }
-        } finally {
-            try {
-                if (exportFile != null) {
-                    exportFile.close();
-                }
-            } catch (IOException e) {
-                throw e;
             }
         }
     }
@@ -65,6 +59,6 @@ public class StoreOrders implements Customizable {
         if (!(obj instanceof Order)) {
             return false;
         }
-        return orders.remove((Order) obj);
+        return orders.remove(obj);
     }
 }

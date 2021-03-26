@@ -30,7 +30,7 @@ public class DonutController implements Initializable {
     @FXML
     TextField donutSubtotalPrice;
 
-    private ArrayList<Donut> storedDonuts = new ArrayList<Donut>();;
+    private ArrayList<Donut> storedDonuts = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,9 +48,8 @@ public class DonutController implements Initializable {
     public void handleAdd() {
         String donutType = donutTypes.getSelectionModel().getSelectedItem();
         String donutFlavor = donutFlavors.getSelectionModel().getSelectedItem();
-        int quantity = 0;
         try {
-            quantity = Integer.parseInt(donutAmount.getText());
+            int quantity = Integer.parseInt(donutAmount.getText());
             if (quantity > 0) {
                 Donut donut = new Donut(donutType, donutFlavor, quantity);
                 donutListView.getItems().add(donut.toString());
@@ -59,7 +58,8 @@ public class DonutController implements Initializable {
                 return;
             }
         } catch (NumberFormatException | NullPointerException e) {
-
+            // Catch the exception when it occurs and go straight to the
+            // Alert message afterwards below
         }
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("RUCAFE: WARNING");

@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import sample.Model.Order;
 import sample.Model.StoreOrders;
 
@@ -112,7 +111,7 @@ public class StoreOrdersController implements Initializable {
                 new FileChooser.ExtensionFilter("text files (*.txt)",
                         "*.txt");
         fc.getExtensionFilters().add(filter);
-        File selectedFile = fc.showSaveDialog((Stage)orderNumber.getScene().getWindow());
+        File selectedFile = fc.showSaveDialog(orderNumber.getScene().getWindow());
         if (selectedFile == null || !selectedFile.canWrite()) {
             alert.setContentText("The selected File did not exist/or could" +
                     " not write to for exporting!");

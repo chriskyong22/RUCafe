@@ -71,7 +71,7 @@ public class Coffee extends MenuItem implements Customizable {
     public String toString() {
         String toReturn = size + "(" + quantity + ") [";
         StringJoiner join = new StringJoiner(",");
-        addins.forEach((item) -> join.add(item.toString()));
+        addins.forEach((item) -> join.add(item));
         return toReturn + join + "]";
     }
 

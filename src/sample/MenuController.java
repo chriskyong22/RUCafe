@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -9,19 +8,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * TO ADD: DESCRIPTION
  * @author Christopher Yong, Maya Ravichandran
  */
-public class MenuController implements Initializable {
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+public class MenuController {
 
     public void handleCoffeeOrdering() {
         createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 375, 400);
