@@ -19,21 +19,21 @@ import java.util.ResourceBundle;
 public class CoffeeController implements Initializable {
 
     @FXML
-    ComboBox<String> coffeeSize;
+    private ComboBox<String> coffeeSize;
     @FXML
-    ComboBox<String> coffeeQuantity;
+    private ComboBox<String> coffeeQuantity;
     @FXML
-    CheckBox cream;
+    private CheckBox cream;
     @FXML
-    CheckBox syrup;
+    private CheckBox syrup;
     @FXML
-    CheckBox milk;
+    private CheckBox milk;
     @FXML
-    CheckBox caramel;
+    private CheckBox caramel;
     @FXML
-    CheckBox whippedCream;
+    private CheckBox whippedCream;
     @FXML
-    TextField subTotal;
+    private TextField subTotal;
 
     private Coffee coffee;
     @Override
@@ -128,7 +128,7 @@ public class CoffeeController implements Initializable {
     }
 
     public void addToShoppingCart() {
-        CurrentOrderController.currentOrder.add(coffee);
+        CurrentOrderController.getCurrentOrder().add(coffee);
         createNewCoffee();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("RUCAFE: Confirmation");

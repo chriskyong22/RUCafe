@@ -19,17 +19,17 @@ import java.util.ResourceBundle;
 public class StoreOrdersController implements Initializable {
 
     @FXML
-    ComboBox<String> orderNumber;
+    private ComboBox<String> orderNumber;
     @FXML
-    ListView<String> orderListView;
+    private ListView<String> orderListView;
     @FXML
-    TextField orderTotalPrice;
+    private TextField orderTotalPrice;
     @FXML
-    Button deleteOrder;
+    private Button deleteOrder;
     @FXML
-    Button exportOrder;
+    private Button exportOrder;
 
-    public static StoreOrders orders = new StoreOrders();
+    private static StoreOrders orders = new StoreOrders();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,6 +41,10 @@ public class StoreOrdersController implements Initializable {
         }
         orderNumber.getSelectionModel().select(0);
         handleSelectedOrder();
+    }
+
+    public static StoreOrders getOrders() {
+        return orders;
     }
 
     public boolean checkEmptyStoredOrders() {

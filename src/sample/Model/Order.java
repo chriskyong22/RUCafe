@@ -13,8 +13,9 @@ public class Order implements Customizable {
     private int orderNumber;
     private double subTotalCost;
     private double totalCost;
-    public static final double SALES_TAX = 0.06625;
     private ArrayList<MenuItem> items;
+    public static final double SALES_TAX = 0.06625;
+
 
     public Order() {
         this.items = new ArrayList<>();

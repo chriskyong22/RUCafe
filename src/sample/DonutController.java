@@ -20,15 +20,15 @@ import java.util.ResourceBundle;
 
 public class DonutController implements Initializable {
     @FXML
-    ComboBox<String> donutTypes;
+    private ComboBox<String> donutTypes;
     @FXML
-    ComboBox<String> donutFlavors;
+    private ComboBox<String> donutFlavors;
     @FXML
-    ListView<String> donutListView;
+    private ListView<String> donutListView;
     @FXML
-    TextField donutAmount;
+    private TextField donutAmount;
     @FXML
-    TextField donutSubtotalPrice;
+    private TextField donutSubtotalPrice;
 
     private ArrayList<Donut> storedDonuts = new ArrayList<>();
 
@@ -107,7 +107,7 @@ public class DonutController implements Initializable {
             alert.showAndWait();
             return;
         }
-        storedDonuts.forEach((item) -> CurrentOrderController.currentOrder.add(item));
+        storedDonuts.forEach((item) -> CurrentOrderController.getCurrentOrder().add(item));
         storedDonuts.clear();
         donutListView.getItems().clear();
         donutListView.getSelectionModel().select(-1);

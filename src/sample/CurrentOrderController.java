@@ -18,25 +18,29 @@ import java.util.ResourceBundle;
  */
 public class CurrentOrderController implements Initializable {
     @FXML
-    ListView<String> currentOrderListView;
+    private ListView<String> currentOrderListView;
     @FXML
-    Button removeItem;
+    private Button removeItem;
     @FXML
-    Button placeOrder;
+    private Button placeOrder;
     @FXML
-    TextField salesTax;
+    private TextField salesTax;
     @FXML
-    TextField totalPrice;
+    private TextField totalPrice;
     @FXML
-    TextField subTotal;
+    private TextField subTotal;
 
-    public static Order currentOrder = new Order();
+    private static Order currentOrder = new Order();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItems();
         updateCosts();
         checkEmptyOrder();
+    }
+
+    public static Order getCurrentOrder() {
+        return currentOrder;
     }
 
     public boolean checkEmptyOrder() {
@@ -96,7 +100,7 @@ public class CurrentOrderController implements Initializable {
         if (checkEmptyOrder()) {
             return;
         }
-        StoreOrdersController.orders.add(currentOrder);
+        StoreOrdersController.getOrders().add(currentOrder);
         currentOrderListView.getItems().clear();
         currentOrder = new Order();
         updateCosts();
