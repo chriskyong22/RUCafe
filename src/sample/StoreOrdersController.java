@@ -17,7 +17,9 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
- * TO ADD: DESCRIPTION
+ * StoreOrders controller to link the StoreOrders View to the StoreOrders
+ * Model. It updates the list view and total price upon selection and removal
+ * of an order. In addition, you can export ALL stored orders to a text file.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class StoreOrdersController implements Initializable {
@@ -35,6 +37,12 @@ public class StoreOrdersController implements Initializable {
 
     private static StoreOrders orders = new StoreOrders();
 
+    /**
+     * Initializes the order combobox to show all the added orders that
+     * have not been removed.
+     * @param url url if provided.
+     * @param resourceBundle resourceBundle if provided.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (checkEmptyStoredOrders()) {
@@ -47,10 +55,20 @@ public class StoreOrdersController implements Initializable {
         handleSelectedOrder();
     }
 
+    /**
+     * Getter fro the store orders object to add new orders.
+     * @return StoreOrders object that represents all the orders that are
+     *         currently stored that have not been removed.
+     */
     public static StoreOrders getOrders() {
         return orders;
     }
 
+    /**
+     * Handles the checking if the stored orders has any orders.
+     * If no orders, generate a warning and disable the buttons.
+     * @return true if empty, otherwise false.
+     */
     public boolean checkEmptyStoredOrders() {
         if (orders.getOrderNumbers() == null) {
             disableFields();
@@ -59,12 +77,22 @@ public class StoreOrdersController implements Initializable {
         return orders.getOrderNumbers() == null;
     }
 
+    /**
+     * Disables the combobox to select orders, the delete order button, and
+     * the export order button.
+     */
     private void disableFields() {
         orderNumber.setDisable(true);
         deleteOrder.setDisable(true);
         exportOrder.setDisable(true);
     }
 
+    /**
+     * Updates the list view with the menu items stored in the order, the
+     * total price displayed.
+     * @param order the order to display in the list view and associated total
+     *              price.
+     */
     private void updateOrderDetails(Order order) {
         orderListView.getItems().addAll(order.stringifiedMenuItems());
         order.calculateSubTotalCost();
@@ -73,6 +101,13 @@ public class StoreOrdersController implements Initializable {
         orderTotalPrice.setText(decimalFormat.format(order.getTotalCost()));
     }
 
+    /**
+     * Handles the selection of an order in the order combobox.
+     * Upon selection, it will update the order displayed in the list view
+     * and associated total price.
+     * If there are no orders, it will generate an Alert warning the user that
+     * there are no orders stored and disable all buttons.
+     */
     public void handleSelectedOrder() {
         if (checkEmptyStoredOrders()) {
             return;
@@ -82,6 +117,16 @@ public class StoreOrdersController implements Initializable {
                 orderNumber.getSelectionModel().getSelectedItem())));
     }
 
+    /**
+     * Handles the deletion of the current selected order in the combobox.
+     * Upon deletion, it will display the order before it and if there are no
+     * orders before it, it will display the next order. In addition, it will
+     * update the associated total price and the menu items of the
+     * order in the list view.
+     * If there are no orders after removing the current selected order, it
+     * will disable all buttons and display an alert to the user informing
+     * there are no more orders to display.
+     */
     public void handleDeleteOrder() {
         if (checkEmptyStoredOrders()) {
             return;
@@ -102,11 +147,23 @@ public class StoreOrdersController implements Initializable {
         handleSelectedOrder();
     }
 
+    /**
+     * Clears the displayed order list view and the total price.
+     */
     public void clearOrderDetails() {
         orderListView.getItems().clear();
         orderTotalPrice.clear();
     }
 
+    /**
+     * Handles the exporting of ALL non-removed orders. (The orders displayed
+     * in the combobox)
+     * Upon export, it will generate an alert informing the user if it
+     * succeeded or not. If it did not succeed, it will contain the reasoning
+     * in the content section.
+     * In addition, if orders are stored then it will not export but display
+     * the appropriate alert and disable all the buttons.
+     */
     public void handleExportOrder() {
         if (checkEmptyStoredOrders()) {
             return;
@@ -150,6 +207,10 @@ public class StoreOrdersController implements Initializable {
         }
     }
 
+    /**
+     * Generates an Alert that indicates the user should place some orders
+     * because there are no more stored orders.
+     */
     private void generateEmptyWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("RUCAFE: WARNING");

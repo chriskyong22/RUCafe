@@ -13,7 +13,9 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
- * TO ADD: DESCRIPTION
+ * Coffee controller to link the Coffee View to the Coffee Model.
+ * It updates the sub total upon adding/removing addins, changing the coffee
+ * quantity or price and upon adding to the shopping cart.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class CoffeeController implements Initializable {
@@ -36,6 +38,13 @@ public class CoffeeController implements Initializable {
     private TextField subTotal;
 
     private Coffee coffee;
+
+    /**
+     * Initializes the combo box and an coffee object to represent the
+     * current coffee selected with its addins, flavors, and quantities.
+     * @param url url if provided
+     * @param resourceBundle resourcebundled if provided 
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         coffeeSize.getItems().addAll("Short",
@@ -52,6 +61,10 @@ public class CoffeeController implements Initializable {
         createNewCoffee();
     }
 
+    /**
+     * Performs the necessary coffee price calculations for the sub total and
+     * displays the new sub total rounded to the nearest thousandths place.
+     */
     public void updateSubTotal() {
         coffee.itemPrice();
         double price = coffee.getItemPrice();
@@ -59,17 +72,29 @@ public class CoffeeController implements Initializable {
         subTotal.setText(decimalFormat.format(price));
     }
 
+    /**
+     * Retrieves and updates the size of the coffee wanted and updates
+     * the sub total.
+     */
     public void updateSize() {
         coffee.setSize(coffeeSize.getSelectionModel().getSelectedItem());
         updateSubTotal();
     }
 
+    /**
+     * Retrieves and updates the quantity of coffee desired and updates
+     * the sub total.
+     */
     public void updateQuantity() {
         coffee.setQuantity(Integer.parseInt(coffeeQuantity.
                 getSelectionModel().getSelectedItem()));
         updateSubTotal();
     }
 
+    /**
+     * Checks if the Cream addin should be added to the current
+     * coffee object and remove/add and updates the sub total.
+     */
     public void checkCream() {
         if (cream.isSelected()) {
             coffee.add("Cream");
@@ -79,6 +104,10 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Checks if the Syrup addin should be added to the current
+     * coffee object and remove/add and updates the sub total.
+     */
     public void checkSyrup() {
         if (syrup.isSelected()) {
             coffee.add("Syrup");
@@ -88,6 +117,10 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Checks if the Milk addin should be added to the current
+     * coffee object and remove/add and updates the sub total.
+     */
     public void checkMilk() {
         if (milk.isSelected()) {
             coffee.add("Milk");
@@ -97,6 +130,10 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Checks if the Caramel addin should be added to the current
+     * coffee object and remove/add and updates the sub total.
+     */
     public void checkCaramel() {
         if (caramel.isSelected()) {
             coffee.add("Caramel");
@@ -106,6 +143,10 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Checks if the Whipped Cream addin should be added to the current
+     * coffee object and remove/add and updates the sub total.
+     */
     public void checkWhippedCream() {
         if (whippedCream.isSelected()) {
             coffee.add("Whipped Cream");
@@ -115,6 +156,10 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Creates a new coffee object and sets the correct addins according to
+     * what is checked in the view and updates the sub total.
+     */
     private void createNewCoffee() {
         coffee = new Coffee(coffeeSize.getSelectionModel().getSelectedItem(),
                 Integer.parseInt(coffeeQuantity.getSelectionModel().
@@ -127,6 +172,11 @@ public class CoffeeController implements Initializable {
         updateSubTotal();
     }
 
+    /**
+     * Adds the current coffee to the current order and generates
+     * a new coffee if the user wishes to add another coffee.
+     * Generates Alert confirming the coffee was added to the cart.
+     */
     public void addToShoppingCart() {
         CurrentOrderController.getCurrentOrder().add(coffee);
         createNewCoffee();

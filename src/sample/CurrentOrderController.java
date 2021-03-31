@@ -13,7 +13,10 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
- * TO ADD: DESCRIPTION
+ * CurrentOrder controller to link the CurrentOrder View to the CurrentOrder
+ * Model. It updates the sub total, sales tax, and total price upon
+ * adding/removing menu items. In addition, you can add the current orders to
+ * a stored order list.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class CurrentOrderController implements Initializable {
@@ -32,6 +35,12 @@ public class CurrentOrderController implements Initializable {
 
     private static Order currentOrder = new Order();
 
+    /**
+     * Initializes the sales, total price, and sub total and menu items in
+     * the menu items list view.
+     * @param url url if provided
+     * @param resourceBundle resourceBundle if provided
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateItems();
@@ -39,10 +48,21 @@ public class CurrentOrderController implements Initializable {
         checkEmptyOrder();
     }
 
+    /**
+     * Getter for the Current Order object to add the menu items.
+     * @return Order object which represents the current order
+     */
     public static Order getCurrentOrder() {
         return currentOrder;
     }
 
+    /**
+     * Checks if the current order has no menu items in it. If so, it will
+     * generate a popup warning to notify the user that they need to add some
+     * menu items and it will also disable the Place Order and Remove Item
+     * buttons.
+     * @return true if empty, otherwise false
+     */
     public boolean checkEmptyOrder() {
         if (currentOrder.getNumberOfMenuItems() == 0) {
             generateEmptyWarning();
@@ -51,11 +71,19 @@ public class CurrentOrderController implements Initializable {
         }
         return false;
     }
+
+    /**
+     * Disables the place order and remove item buttons.
+     */
     private void disableButtons() {
         placeOrder.setDisable(true);
         removeItem.setDisable(true);
     }
 
+    /**
+     * Generates the alert message for an empty cart (current order has no
+     * menu items).
+     */
     private void generateEmptyWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("RUCAFE: WARNING");
@@ -66,10 +94,19 @@ public class CurrentOrderController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Updates the menu items list view with all the menu items currently
+     * added to the cart.
+     */
     public void updateItems() {
         currentOrderListView.getItems().addAll(currentOrder.stringifiedMenuItems());
     }
 
+    /**
+     * Performs the necessary menu item calculations for each menu item and
+     * updates the sub total, sales tax, and total price of all menu items
+     * rounded to the nearest thousandths place.
+     */
     public void updateCosts() {
         currentOrder.calculateSubTotalCost();
         DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
@@ -79,6 +116,15 @@ public class CurrentOrderController implements Initializable {
         totalPrice.setText(decimalFormat.format(currentOrder.getTotalCost()));
     }
 
+    /**
+     * Handles the removal of a selected item in the menu item listview.
+     * Updates the current order object and the sub total, sales tax, and
+     * total price and the menu item listview.
+     * If no item was selected, it will display a warning alert that tells
+     * the user to select an item from the menu item list view.
+     * If the user removes the last item in the list view, it will display
+     * a warning and disable the buttons.
+     */
     public void handleRemoveItem() {
         int selectedIndex = currentOrderListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0) {
@@ -96,6 +142,17 @@ public class CurrentOrderController implements Initializable {
         }
     }
 
+    /**
+     * Handles the adding to the stored orders.
+     * If there is no items currently in the current order, it will not
+     * add it to the stored orders and just display a warning instead and
+     * disable the buttons.
+     * Upon addition of the current order to the stored orders, it will
+     * generate a new order object and update the sub total, sales, and total
+     * price and the list view and disable all the buttons and display a
+     * alert indicating it was successfully added the current order to the
+     * stored orders.
+     */
     public void addToStoredOrders() {
         if (checkEmptyOrder()) {
             return;

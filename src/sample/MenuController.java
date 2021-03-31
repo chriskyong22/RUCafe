@@ -10,27 +10,52 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * TO ADD: DESCRIPTION
+ * Controller for the main menu for the RUCAFE. It loads the other views
+ * upon user selection.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class MenuController {
 
+    /**
+     * Handles the opening of the coffee menu.
+     */
     public void handleCoffeeOrdering() {
-        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu", 375, 400);
+        createNewStage("Coffee.fxml", "RUCAFE: Coffee Menu",
+                375, 400);
     }
 
+    /**
+     * Handles the opening of the donut menu.
+     */
     public void handleDonutOrdering() {
-        createNewStage("Donut.fxml", "RUCAFE: Donut Menu", 450, 400);
+        createNewStage("Donut.fxml", "RUCAFE: Donut Menu",
+                450, 400);
     }
 
+    /**
+     * Handles the opening of the current order menu.
+     */
     public void handleCheckCurrentOrder() {
-        createNewStage("CurrentOrder.fxml", "RUCAFE: Current Order", 425, 400);
+        createNewStage("CurrentOrder.fxml", "RUCAFE: Current Order",
+                425, 400);
     }
 
+    /**
+     * Handles the opening of the stored orders menu.
+     */
     public void handleCheckOrders() {
-        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders", 375, 350);
+        createNewStage("StoreOrders.fxml", "RUCAFE: All Orders",
+                375, 350);
     }
 
+    /**
+     * Helper method to call the necessary FXML methods to load the desired
+     * view.
+     * @param path path to the view to load
+     * @param title title of the window
+     * @param width width of the window
+     * @param height height of the window
+     */
     private void createNewStage(String path, String title, int width, int height) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(path));

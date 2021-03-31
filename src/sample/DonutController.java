@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * TO ADD: DESCRIPTION
+ * Donut controller to link the Donut View to the Donut model.
+ * It updates the sub total upon adding/removing donuts and the donut list
+ * view and if allows the user to add the list donuts to the current order.
  * @author Christopher Yong, Maya Ravichandran
  */
 
@@ -32,6 +34,11 @@ public class DonutController implements Initializable {
 
     private ArrayList<Donut> storedDonuts = new ArrayList<>();
 
+    /**
+     * Initializes the donut type and donut flavor combobox.
+     * @param url url if provided
+     * @param resourceBundle resourceBundle if provided
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -45,6 +52,13 @@ public class DonutController implements Initializable {
         donutFlavors.getSelectionModel().select(0);
     }
 
+    /**
+     * Retrieves the selected donut type and flavor and quantity from the view
+     * and creates the donut object to be stored and updates the donut list
+     * view and sub total price.
+     * Also performs the necessary validation for the quantity and will display
+     * an alert message if the quantity is invalid.
+     */
     public void handleAdd() {
         String donutType = donutTypes.getSelectionModel().getSelectedItem();
         String donutFlavor = donutFlavors.getSelectionModel().getSelectedItem();
@@ -70,6 +84,12 @@ public class DonutController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Retrieves the selected donut from the donut list view to remove. Updates
+     * the list view and sub total upon deletion of the donut.
+     * If no donut was selected, it will display an alert telling the user to
+     * select an item from the list view.
+     */
     public void handleRemove() {
         //TO DO
         int selectedIndex = donutListView.getSelectionModel().getSelectedIndex();
@@ -87,6 +107,12 @@ public class DonutController implements Initializable {
         }
     }
 
+
+    /**
+     * Performs the necessary donut(s) price calculations for the sub total
+     * and displays the new sub total rounded to the nearest thousandths
+     * place.
+     */
     public void updateSubTotal() {
         double price = 0;
         for (Donut donut : storedDonuts) {
@@ -97,6 +123,15 @@ public class DonutController implements Initializable {
         donutSubtotalPrice.setText(decimalFormat.format(price));
     }
 
+    /**
+     * Adds list of donuts that are displayed in the list view into the
+     * current order object. Upon success, it will generate an alert telling
+     * the user all the donuts were successfully added to the current order or
+     * the cart.
+     * If no donuts were added (meaning the donut list view is empty), it
+     * will generate a warning telling the user to add donuts before adding
+     * to the cart.
+     */
     public void addToShoppingCart() {
         if (storedDonuts.size() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -107,7 +142,8 @@ public class DonutController implements Initializable {
             alert.showAndWait();
             return;
         }
-        storedDonuts.forEach((item) -> CurrentOrderController.getCurrentOrder().add(item));
+        storedDonuts.forEach((item) -> CurrentOrderController.
+                getCurrentOrder().add(item));
         storedDonuts.clear();
         donutListView.getItems().clear();
         donutListView.getSelectionModel().select(-1);
