@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 
 /**
- * TO ADD: DESCRIPTION
+ * The Coffee class handles all operations relating to manipulating coffees,
+ * including adding and removing add-ins to the coffee, changing its quantity,
+ * and calculating its price.
  * @author Christopher Yong, Maya Ravichandran
  */
-
 public class Coffee extends MenuItem implements Customizable {
     private ArrayList<String> addins;
     private String size;
@@ -19,12 +20,24 @@ public class Coffee extends MenuItem implements Customizable {
     public static final double GRANDE_PRICE = 1.00;
     public static final double VENTI_PRICE = 1.50;
 
+    /**
+     * The constructor for the Coffee class.
+     * Initializes the list of add-ins to an empty ArrayList and sets the
+     * coffee's size and quantity to the values specified in the method
+     * parameters.
+     * @param size the size of the coffee (small, tall, grande, venti)
+     * @param quantity the number of this type of coffee being ordered
+     */
     public Coffee(String size, int quantity) {
         this.addins = new ArrayList<>();
         this.size = size;
         this.quantity = quantity;
     }
 
+    /**
+     * Adds the specified object to the list of the coffee's add-ins.
+     * @param obj a string containing the name of the add-in to be added
+     */
     @Override
     public boolean add(Object obj) {
         if (!(obj instanceof String)) {
@@ -33,6 +46,10 @@ public class Coffee extends MenuItem implements Customizable {
         return addins.add((String) obj);
     }
 
+    /**
+     * Removes the specified object from the list of the coffee's add-ins.
+     * @param obj a string containing the name of the add-in to be removed
+     */
     @Override
     public boolean remove(Object obj) {
         if (!(obj instanceof String)) {
@@ -41,6 +58,11 @@ public class Coffee extends MenuItem implements Customizable {
         return addins.remove(obj);
     }
 
+    /**
+     * Calculates the coffee's price based on its size, number of add-ins,
+     * and quantity, and updates the corresponding itemPrice field in the
+     * MenuItem superclass with this value.
+     */
     @Override
     public void itemPrice() {
         super.itemPrice = BASE_PRICE;
@@ -59,14 +81,27 @@ public class Coffee extends MenuItem implements Customizable {
         super.itemPrice *= quantity;
     }
 
+    /**
+     * Sets the size of the coffee to the specified value.
+     * @param size the size of the coffee (small, tall, grande, venti)
+     */
     public void setSize(String size) {
         this.size = size;
     }
 
+    /**
+     * Sets the size of the coffee to the specified value.
+     * @param quantity the number of this type of coffee being ordered
+     */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Creates the String representation of the coffee in the format
+     * "Size(Quantity) [Add-In1,Add-In2,...]".
+     * @return the String representation of the coffee
+     */
     @Override
     public String toString() {
         String toReturn = size + "(" + quantity + ") [";
@@ -75,6 +110,12 @@ public class Coffee extends MenuItem implements Customizable {
         return toReturn + join + "]";
     }
 
+    /**
+     * Checks if two coffees are equal via their quantities, add-in lists,
+     * and sizes.
+     * @param o the object to compare to
+     * @return true if the coffees match, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
