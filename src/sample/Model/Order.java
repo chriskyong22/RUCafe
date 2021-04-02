@@ -95,6 +95,7 @@ public class Order implements Customizable {
 
     /**
      * Gets the subtotal cost of this order.
+     * Assumes calculateSubTotalCost() was called beforehand.
      * @return the subtotal cost
      */
     public double getSubTotalCost() {
@@ -104,6 +105,7 @@ public class Order implements Customizable {
     /**
      * Calculates the total cost of this order by adding the sales tax to the
      * subtotal cost and sets the corresponding field to this value.
+     * Assumes calculateSubTotalCost() was called beforehand.
      */
     public void calculateTotalCost() {
         this.totalCost = this.subTotalCost + getSaleTax();
@@ -112,6 +114,7 @@ public class Order implements Customizable {
     /**
      * Calculates the sales tax charge for this order by multiplying the
      * subtotal cost by the tax rate and returns this value.
+     * Assumes calculateSubTotalCost() was called beforehand.
      * @return the sales tax charge of this order
      */
     public double getSaleTax() {
@@ -120,6 +123,7 @@ public class Order implements Customizable {
 
     /**
      * Gets the total cost of this order.
+     * Assumes calculateTotalCost() was called beforehand.
      * @return the total cost of this order
      */
     public double getTotalCost() {
