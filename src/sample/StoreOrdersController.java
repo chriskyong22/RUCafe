@@ -18,12 +18,12 @@ import java.util.ResourceBundle;
 
 /**
  * StoreOrders controller to link the StoreOrders View to the StoreOrders
- * Model. It updates the list view and total price upon selection and removal
+ * Model.
+ * It updates the list view and total price upon selection and removal
  * of an order. In addition, you can export ALL stored orders to a text file.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class StoreOrdersController implements Initializable {
-
     @FXML
     private ComboBox<String> orderNumber;
     @FXML
@@ -56,7 +56,7 @@ public class StoreOrdersController implements Initializable {
     }
 
     /**
-     * Getter fro the store orders object to add new orders.
+     * Getter for the store orders object to add new orders.
      * @return StoreOrders object that represents all the orders that are
      *         currently stored that have not been removed.
      */
@@ -91,7 +91,7 @@ public class StoreOrdersController implements Initializable {
      * Updates the list view with the menu items stored in the order, the
      * total price displayed.
      * @param order the order to display in the list view and associated total
-     *              price.
+     *              price
      */
     private void updateOrderDetails(Order order) {
         orderListView.getItems().addAll(order.stringifiedMenuItems());
@@ -119,7 +119,7 @@ public class StoreOrdersController implements Initializable {
 
     /**
      * Handles the deletion of the current selected order in the combobox.
-     * Upon deletion, it will display the order before it and if there are no
+     * Upon deletion, it will display the order before it, and if there are no
      * orders before it, it will display the next order. In addition, it will
      * update the associated total price and the menu items of the
      * order in the list view.
@@ -176,7 +176,8 @@ public class StoreOrdersController implements Initializable {
                 new FileChooser.ExtensionFilter("text files (*.txt)",
                         "*.txt");
         fc.getExtensionFilters().add(filter);
-        File selectedFile = fc.showSaveDialog(orderNumber.getScene().getWindow());
+        File selectedFile = fc.showSaveDialog(orderNumber.getScene()
+                .getWindow());
         if (selectedFile == null || !selectedFile.canWrite()) {
             alert.setContentText("The selected File did not exist/or could" +
                     " not write to for exporting!");

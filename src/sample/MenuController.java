@@ -10,12 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Controller for the main menu for the RUCAFE. It loads the other views
+ * Controller for the main menu for the RUCAFE, which loads the other views
  * upon user selection.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class MenuController {
-
     /**
      * Handles the opening of the coffee menu.
      */

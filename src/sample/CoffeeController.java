@@ -63,7 +63,7 @@ public class CoffeeController implements Initializable {
 
     /**
      * Performs the necessary coffee price calculations for the sub total and
-     * displays the new sub total rounded to the nearest thousandths place.
+     * displays the new sub total rounded to the nearest hundredths place.
      */
     public void updateSubTotal() {
         coffee.itemPrice();

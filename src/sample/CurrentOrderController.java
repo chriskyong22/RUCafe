@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
- * CurrentOrder controller to link the CurrentOrder View to the CurrentOrder
+ * CurrentOrder controller links the CurrentOrder View to the CurrentOrder
  * Model. It updates the sub total, sales tax, and total price upon
  * adding/removing menu items. In addition, you can add the current orders to
  * a stored order list.
@@ -38,8 +38,8 @@ public class CurrentOrderController implements Initializable {
     /**
      * Initializes the sales, total price, and sub total and menu items in
      * the menu items list view.
-     * @param url url if provided
-     * @param resourceBundle resourceBundle if provided
+     * @param url URL if provided
+     * @param resourceBundle resource bundle if provided
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,10 +57,10 @@ public class CurrentOrderController implements Initializable {
     }
 
     /**
-     * Checks if the current order has no menu items in it. If so, it will
-     * generate a popup warning to notify the user that they need to add some
-     * menu items and it will also disable the Place Order and Remove Item
-     * buttons.
+     * Checks if the current order has no menu items in it.
+     * If so, it will generate a popup warning to notify the user that they
+     * need to add some menu items.
+     * It will also disable the Place Order and Remove Item buttons.
      * @return true if empty, otherwise false
      */
     public boolean checkEmptyOrder() {
@@ -99,19 +99,21 @@ public class CurrentOrderController implements Initializable {
      * added to the cart.
      */
     public void updateItems() {
-        currentOrderListView.getItems().addAll(currentOrder.stringifiedMenuItems());
+        currentOrderListView.getItems()
+                .addAll(currentOrder.stringifiedMenuItems());
     }
 
     /**
      * Performs the necessary menu item calculations for each menu item and
      * updates the sub total, sales tax, and total price of all menu items
-     * rounded to the nearest thousandths place.
+     * rounded to the nearest hundredths place.
      */
     public void updateCosts() {
         currentOrder.calculateSubTotalCost();
         DecimalFormat decimalFormat = new DecimalFormat("'$'#,##0.00");
-        subTotal.setText(decimalFormat.format(currentOrder.getSubTotalCost()));
-        salesTax.setText(decimalFormat.format(currentOrder.getSaleTax()));
+        subTotal.setText(decimalFormat.format(currentOrder
+                .getSubTotalCost()));
+        salesTax.setText(decimalFormat.format(currentOrder.getSalesTax()));
         currentOrder.calculateTotalCost();
         totalPrice.setText(decimalFormat.format(currentOrder.getTotalCost()));
     }
@@ -126,7 +128,8 @@ public class CurrentOrderController implements Initializable {
      * a warning and disable the buttons.
      */
     public void handleRemoveItem() {
-        int selectedIndex = currentOrderListView.getSelectionModel().getSelectedIndex();
+        int selectedIndex = currentOrderListView.getSelectionModel()
+                .getSelectedIndex();
         if (selectedIndex < 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("RUCAFE: WARNING");
@@ -144,13 +147,13 @@ public class CurrentOrderController implements Initializable {
 
     /**
      * Handles the adding to the stored orders.
-     * If there is no items currently in the current order, it will not
+     * If there are no items currently in the current order, it will not
      * add it to the stored orders and just display a warning instead and
-     * disable the buttons.
+     * disables the buttons.
      * Upon addition of the current order to the stored orders, it will
      * generate a new order object and update the sub total, sales, and total
      * price and the list view and disable all the buttons and display a
-     * alert indicating it was successfully added the current order to the
+     * alert indicating it has successfully added the current order to the
      * stored orders.
      */
     public void addToStoredOrders() {

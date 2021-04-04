@@ -15,11 +15,10 @@ import java.util.ResourceBundle;
 
 /**
  * Donut controller to link the Donut View to the Donut model.
- * It updates the sub total upon adding/removing donuts and the donut list
- * view and if allows the user to add the list donuts to the current order.
+ * It updates the sub-total and donut list view upon adding/removing donuts,
+ * and it allows the user to add the list's donuts to the current order.
  * @author Christopher Yong, Maya Ravichandran
  */
-
 public class DonutController implements Initializable {
     @FXML
     private ComboBox<String> donutTypes;
@@ -36,12 +35,11 @@ public class DonutController implements Initializable {
 
     /**
      * Initializes the donut type and donut flavor combobox.
-     * @param url url if provided
-     * @param resourceBundle resourceBundle if provided
+     * @param url URL if provided
+     * @param resourceBundle resource bundle if provided
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         donutTypes.getItems().addAll("Yeast Donut",
                 "Cake Donut",
                 "Donut Holes");
@@ -53,15 +51,16 @@ public class DonutController implements Initializable {
     }
 
     /**
-     * Retrieves the selected donut type and flavor and quantity from the view
-     * and creates the donut object to be stored and updates the donut list
-     * view and sub total price.
-     * Also performs the necessary validation for the quantity and will display
-     * an alert message if the quantity is invalid.
+     * Retrieves the selected donut type, flavor, and quantity from the view,
+     * creates the donut object to be stored, and updates the donut list
+     * view and sub-total price.
+     * Also performs the necessary validation for the quantity and will
+     * display an alert message if the quantity is invalid.
      */
     public void handleAdd() {
         String donutType = donutTypes.getSelectionModel().getSelectedItem();
-        String donutFlavor = donutFlavors.getSelectionModel().getSelectedItem();
+        String donutFlavor = donutFlavors.getSelectionModel()
+                .getSelectedItem();
         try {
             int quantity = Integer.parseInt(donutAmount.getText());
             if (quantity > 0) {
@@ -85,14 +84,14 @@ public class DonutController implements Initializable {
     }
 
     /**
-     * Retrieves the selected donut from the donut list view to remove. Updates
-     * the list view and sub total upon deletion of the donut.
+     * Retrieves the selected donut from the donut list view to remove, and
+     * updates the list view and sub-total upon deletion of the donut.
      * If no donut was selected, it will display an alert telling the user to
      * select an item from the list view.
      */
     public void handleRemove() {
-        //TO DO
-        int selectedIndex = donutListView.getSelectionModel().getSelectedIndex();
+        int selectedIndex = donutListView.getSelectionModel()
+                .getSelectedIndex();
         if (selectedIndex < 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("RUCAFE: WARNING");
@@ -109,8 +108,8 @@ public class DonutController implements Initializable {
 
 
     /**
-     * Performs the necessary donut(s) price calculations for the sub total
-     * and displays the new sub total rounded to the nearest thousandths
+     * Performs the necessary donut(s) price calculations for the sub-total
+     * and displays the new sub-total rounded to the nearest hundredths
      * place.
      */
     public void updateSubTotal() {
@@ -125,9 +124,9 @@ public class DonutController implements Initializable {
 
     /**
      * Adds list of donuts that are displayed in the list view into the
-     * current order object. Upon success, it will generate an alert telling
-     * the user all the donuts were successfully added to the current order or
-     * the cart.
+     * current order object.
+     * Upon success, it will generate an alert telling the user all the
+     * donuts were successfully added to the current order or the cart.
      * If no donuts were added (meaning the donut list view is empty), it
      * will generate a warning telling the user to add donuts before adding
      * to the cart.
