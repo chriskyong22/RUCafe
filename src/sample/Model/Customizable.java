@@ -12,13 +12,13 @@ public interface Customizable {
      * @param obj the object to add
      * @return true if add succeeded, otherwise false
      */
-    boolean add (Object obj);
+    boolean add(Object obj);
 
     /**
-     * Method to remove an object to associated object/class.
+     * Method to remove an object from associated object/class.
      * (addins for coffee, menuitems for orders, and order for storedOrders)
-     * @param obj the object to add
+     * @param obj the object to remove
      * @return true if remove succeeded, otherwise false
      */
-    boolean remove (Object obj);
+    boolean remove(Object obj);
 }

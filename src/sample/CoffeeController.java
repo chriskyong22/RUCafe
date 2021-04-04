@@ -14,8 +14,8 @@ import java.util.ResourceBundle;
 
 /**
  * Coffee controller to link the Coffee View to the Coffee Model.
- * It updates the sub total upon adding/removing addins, changing the coffee
- * quantity or price and upon adding to the shopping cart.
+ * It updates the sub-total upon adding/removing add-ins, changing the coffee
+ * quantity or price, and upon adding to the shopping cart.
  * @author Christopher Yong, Maya Ravichandran
  */
 public class CoffeeController implements Initializable {
@@ -40,10 +40,10 @@ public class CoffeeController implements Initializable {
     private Coffee coffee;
 
     /**
-     * Initializes the combo box and an coffee object to represent the
-     * current coffee selected with its addins, flavors, and quantities.
-     * @param url url if provided
-     * @param resourceBundle resourcebundled if provided 
+     * Initializes the combo box and a coffee object to represent the
+     * current coffee selected with its add-ins, flavors, and quantities.
+     * @param url URL if provided
+     * @param resourceBundle resource bundle if provided
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,7 +74,7 @@ public class CoffeeController implements Initializable {
 
     /**
      * Retrieves and updates the size of the coffee wanted and updates
-     * the sub total.
+     * the sub-total.
      */
     public void updateSize() {
         coffee.setSize(coffeeSize.getSelectionModel().getSelectedItem());
@@ -83,7 +83,7 @@ public class CoffeeController implements Initializable {
 
     /**
      * Retrieves and updates the quantity of coffee desired and updates
-     * the sub total.
+     * the sub-total.
      */
     public void updateQuantity() {
         coffee.setQuantity(Integer.parseInt(coffeeQuantity.
@@ -92,8 +92,9 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Checks if the Cream addin should be added to the current
-     * coffee object and remove/add and updates the sub total.
+     * Checks if the Cream add-in should be added to the current
+     * coffee object, does the corresponding remove/add operation,
+     * and updates the sub-total.
      */
     public void checkCream() {
         if (cream.isSelected()) {
@@ -105,8 +106,9 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Checks if the Syrup addin should be added to the current
-     * coffee object and remove/add and updates the sub total.
+     * Checks if the syrup add-in should be added to the current
+     * coffee object, does the corresponding remove/add operation,
+     * and updates the sub-total.
      */
     public void checkSyrup() {
         if (syrup.isSelected()) {
@@ -118,8 +120,9 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Checks if the Milk addin should be added to the current
-     * coffee object and remove/add and updates the sub total.
+     * Checks if the milk add-in should be added to the current
+     * coffee object, does the corresponding remove/add operation,
+     * and updates the sub-total.
      */
     public void checkMilk() {
         if (milk.isSelected()) {
@@ -131,8 +134,9 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Checks if the Caramel addin should be added to the current
-     * coffee object and remove/add and updates the sub total.
+     * Checks if the caramel add-in should be added to the current
+     * coffee object, does the corresponding remove/add operation,
+     * and updates the sub-total.
      */
     public void checkCaramel() {
         if (caramel.isSelected()) {
@@ -144,8 +148,9 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Checks if the Whipped Cream addin should be added to the current
-     * coffee object and remove/add and updates the sub total.
+     * Checks if the whipped cream add-in should be added to the current
+     * coffee object, does the corresponding remove/add operation,
+     * and updates the sub-total.
      */
     public void checkWhippedCream() {
         if (whippedCream.isSelected()) {
@@ -157,8 +162,8 @@ public class CoffeeController implements Initializable {
     }
 
     /**
-     * Creates a new coffee object and sets the correct addins according to
-     * what is checked in the view and updates the sub total.
+     * Creates a new coffee object, sets the correct add-ins according to
+     * what is checked in the view, and updates the sub total.
      */
     private void createNewCoffee() {
         coffee = new Coffee(coffeeSize.getSelectionModel().getSelectedItem(),
@@ -169,7 +174,6 @@ public class CoffeeController implements Initializable {
         checkMilk();
         checkSyrup();
         checkWhippedCream();
-        updateSubTotal();
     }
 
     /**
