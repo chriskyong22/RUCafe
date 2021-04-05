@@ -26,7 +26,7 @@ public class Main extends Application {
     }
 
     /**
-     * THe main function that starts the FXML program.
+     * The main function that starts the FXML program.
      * @param args the cmdline arguments
      */
     public static void main(String[] args) {
