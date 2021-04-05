@@ -52,7 +52,7 @@
                <children>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#handleDeleteOrder" text="Delete Order">
+                        <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#handleDeleteOrder" text="Cancel Order">
                            <font>
                               <Font name="KacstBook" size="12.0" />
                            </font>
