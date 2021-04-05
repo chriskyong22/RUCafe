@@ -99,12 +99,12 @@ public class Coffee extends MenuItem implements Customizable {
 
     /**
      * Creates the String representation of the coffee in the format
-     * "Size(Quantity) [Add-In1,Add-In2,...]".
+     * "Coffee Size(Quantity) [Add-In1,Add-In2,...]".
      * @return the String representation of the coffee
      */
     @Override
     public String toString() {
-        String toReturn = size + "(" + quantity + ") [";
+        String toReturn = "Coffee " + size + "(" + quantity + ") [";
         StringJoiner join = new StringJoiner(",");
         addins.forEach((item) -> join.add(item));
         return toReturn + join + "]";
